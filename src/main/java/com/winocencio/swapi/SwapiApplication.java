@@ -8,12 +8,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SwapiApplication {
 
-	private static Logger Logger = LoggerFactory.getLogger(SwapiApplication.class);
+	private static Logger logger = LoggerFactory.getLogger(SwapiApplication.class);
 	
 	public static void main(String[] args) {
-		Logger.info("Starting the SWAPI api with recommendation.");
+		logger.info("Starting the SWAPI api with recommendation.");
 		SpringApplication.run(SwapiApplication.class, args);
-		Logger.info("SWAPI api with recommendation started and ready to receive requests.");
+		logger.info("SWAPI api with recommendation started and ready to receive requests.");
 	}
 
 }
