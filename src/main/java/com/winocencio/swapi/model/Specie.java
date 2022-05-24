@@ -125,9 +125,6 @@ public class Specie {
 
 	@JsonSetter("homeworld")
 	public void setHomeworldId(String homeworldUrl) {
-		if(homeworldUrl ==null)
-			return;
-		
 		this.homeworldId = Util.getIdFromUrl(homeworldUrl);
 	}
 
