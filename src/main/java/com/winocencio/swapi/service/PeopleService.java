@@ -35,8 +35,8 @@ public class PeopleService {
 		for (Integer specieId : people.getSpecieIds()) {
 			Specie specie = swapiConsumerService.getSpecie(specieId);
 			
-			specie.getPeopleIds().remove(people.getId());
 			people.getPeopleSimiliarIds().addAll(specie.getPeopleIds());
+			people.getPeopleSimiliarIds().remove(people.getId());
 			
 			if(people.getPeopleSimiliarIds().size() > 2) {
 				people.setPeopleSimiliarIds(people.getPeopleSimiliarIds().subList(0, 3));

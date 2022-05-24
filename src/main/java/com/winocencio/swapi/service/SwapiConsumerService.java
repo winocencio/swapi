@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -37,10 +38,12 @@ private RestTemplate restTemplate;
 		this.restTemplate = new RestTemplate();
 	}
 	
+	@Cacheable("getPeople")
 	public People getPeople(Integer id) {
 		return this.get("people", id, People.class);
 	}
 	
+	@Cacheable("getSpecie")
 	public Specie getSpecie(Integer id) {
 		return this.get("species", id, Specie.class);
 	}
@@ -59,7 +62,6 @@ private RestTemplate restTemplate;
 		
 		return response.getBody();
 	}
-	
 	
 	private <T> List<T> find(String entityPath,String argument,Class<T[]> clasz) {
 		logger.info("Getting {} from SWAPI!",entityPath);

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.constraints.NotBlank;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,7 @@ public class PeopleController {
 	private PeopleService peopleService;
 	
 	@GetMapping("/{id}")
+	@Cacheable("getPeopleById")
 	public ResponseEntity<People> getById(@PathVariable @NotBlank @NumberFormat Integer id){
 		
 		People people = peopleService.getById(id);
@@ -32,6 +34,7 @@ public class PeopleController {
 	}
 	
 	@GetMapping("/findByName/{name}")
+	@Cacheable("findPeopleByName")
 	public ResponseEntity<List<People>> findByName(@PathVariable @NotBlank String name){
 		
 		List<People> peoples = peopleService.findByName(name);
