@@ -15,13 +15,13 @@ import com.winocencio.swapi.model.Specie;
 public class PeopleService {
 
 	@Autowired
-	private RestConsumerService restConsumerService;
+	private SwapiConsumerService swapiConsumerService;
 	
 	private static Logger logger = LoggerFactory.getLogger(PeopleService.class);
 	
 	public People getById(Integer id) {
 		logger.info("Listing people with relationships and recommendations by id: {}",id);
-		People people = restConsumerService.getPeople(id);
+		People people = swapiConsumerService.getPeople(id);
 		
 		setSimilars(people);
 		
@@ -33,7 +33,7 @@ public class PeopleService {
 		people.setPeopleSimiliarIds(new ArrayList<>());
 		
 		for (Integer specieId : people.getSpecieIds()) {
-			Specie specie = restConsumerService.getSpecie(specieId);
+			Specie specie = swapiConsumerService.getSpecie(specieId);
 			
 			specie.getPeopleIds().remove(people.getId());
 			people.getPeopleSimiliarIds().addAll(specie.getPeopleIds());
@@ -47,7 +47,7 @@ public class PeopleService {
 	
 	public List<People> findByName(String name) {
 		logger.info("Listing peoples with relationships and recommendations by name: {}", name);
-		List<People> findPeoples = restConsumerService.findPeoples(name);
+		List<People> findPeoples = swapiConsumerService.findPeoples(name);
 		
 		findPeoples.stream().forEach(this::setSimilars);
 		

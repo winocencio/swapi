@@ -22,7 +22,7 @@ import com.winocencio.swapi.model.People;
 import com.winocencio.swapi.model.Specie;
 
 @Service
-public class RestConsumerService {
+public class SwapiConsumerService {
 
 private RestTemplate restTemplate;
 
@@ -31,9 +31,9 @@ private RestTemplate restTemplate;
 	private static final String URL_PATH_GET =  URL_PATH_ROOT + "%s/%s";
 	private static final String URL_PATH_FIND = URL_PATH_ROOT + "%s/?search=%s";
 	
-	private static Logger logger = LoggerFactory.getLogger(RestConsumerService.class);
+	private static Logger logger = LoggerFactory.getLogger(SwapiConsumerService.class);
 	
-	public RestConsumerService() {
+	public SwapiConsumerService() {
 		this.restTemplate = new RestTemplate();
 	}
 	
