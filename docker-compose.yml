@@ -1,0 +1,26 @@
+version: "3"
+services:
+  swapi:
+    image: willinocencio/swapi
+    container_name: swapi
+    environment:
+      - CACHE_URL=swapi-cache
+    ports: 
+      - 8080:8080
+    networks:
+      - swapi-net
+    links:
+      - swapi-cache
+    restart: always
+
+  swapi-cache:
+    image: redis
+    container_name: swapi-cache
+    ports: 
+      - 6379:6379
+    networks:
+      - swapi-net
+
+networks:
+  swapi-net:
+    driver: bridge
