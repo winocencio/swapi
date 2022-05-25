@@ -6,6 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.winocencio.swapi.model.People;
@@ -19,6 +20,7 @@ public class PeopleService {
 	
 	private static Logger logger = LoggerFactory.getLogger(PeopleService.class);
 	
+	@Cacheable("getPeopleById")
 	public People getById(Integer id) {
 		logger.info("Listing people with relationships and recommendations by id: {}",id);
 		People people = swapiConsumerService.getPeople(id);
@@ -39,7 +41,7 @@ public class PeopleService {
 			people.getPeopleSimiliarIds().remove(people.getId());
 			
 			if(people.getPeopleSimiliarIds().size() > 2) {
-				people.setPeopleSimiliarIds(people.getPeopleSimiliarIds().subList(0, 3));
+				people.setPeopleSimiliarIds(new ArrayList<>(people.getPeopleSimiliarIds().subList(0, 3)) );
 				break;
 			}
 		}

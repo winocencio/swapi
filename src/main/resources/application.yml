@@ -2,6 +2,11 @@ server:
   port: ${PORT:8080}
   
 spring:
+  cache:
+    type: redis
+  redis:
+    host: ${CACHE_URL:localhost}
+    port: 6379
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher

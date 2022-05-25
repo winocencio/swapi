@@ -1,5 +1,6 @@
 package com.winocencio.swapi.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
@@ -8,7 +9,12 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.winocencio.swapi.util.Util;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class People {
+public class People implements Serializable  {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1503919054207503049L;
 	
 	private Integer id;
 	private String name;

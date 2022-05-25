@@ -27,7 +27,7 @@ public class SwapiConsumerService {
 
 private RestTemplate restTemplate;
 
-	private static final String URL_PATH_ROOT = "https://swapi.dev/api/";
+	private static final String URL_PATH_ROOT = "https://swapi.py4e.com/api/";
 	private static final String URL_PATH_GET =  URL_PATH_ROOT + "%s/%s";
 	private static final String URL_PATH_FIND = URL_PATH_ROOT + "%s/?search=%s";
 	
